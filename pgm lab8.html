@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<h1>HTML page with stripe table with using css</h1>
+  <meta charset="UTF-8" />
+  <title>Employee Table with Red Header</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 40px;
+      background-color: white;
+    }
+
+    #studentTable {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: lightgrey;
+    }
+    #studentTable th {
+      padding: 8px;
+      text-align: left;
+      background-color: red;
+      color: white;
+      border: 1px solid grey;
+    }
+    #studentTable td {
+      padding: 8px;
+      text-align: left;
+      border: 1px solid grey;
+    }
+    #studentTable tbody tr:nth-child(even) {
+      background-color: grey;
+    }
+    #studentTable tbody tr:hover {
+      background-color: burlywood;
+    }
+  </style>
+</head>
+<body>
+<table id="studentTable">
+    <head>
+      <tr>
+        <th>SL.No</th>
+        <th>Admn.no</th>
+        <th>Name</th>
+        <th>Email.ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>123</td>
+        <td>Rushba</td>
+        <td>rush@gmail.com</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>234</td>
+        <td>Arun</td>
+        <td>Arun@gmail.com</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>345</td>
+        <td>Rahul</td>
+        <td>Rahul@gmail.com</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>456</td>
+        <td>Ram</td>
+        <td>ram@gmail.com</td>
+      </tr>
+      <tr>
+      <td>5</td>
+      <td>567</td>
+      <td>Anil</td>
+      <td>anil@gmail.com</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
+
