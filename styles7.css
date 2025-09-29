@@ -1,0 +1,21 @@
+p {
+    color: navy;
+    background-color: lightyellow;
+}
+.class-selector {
+    color: white;
+    background-color: darkgreen;
+}
+#id-selector {
+    color: black;
+    background-color: orange;
+}
+* {
+    font-family: Arial, sans-serif;
+}
+h2, .grouped {
+    color: maroon;
+    background-color: #e0e0e0;
+}
+
+
