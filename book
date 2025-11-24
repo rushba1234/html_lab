@@ -1,0 +1,100 @@
+?php
+// Database connection settings
+$servername = "localhost";
+$username = "root";   // default for XAMPP/WAMP
+$password = "";       // default for XAMPP/WAMP
+$dbname = "book info";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Insert book details if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $bookno = $_POST['bookno'];
+    $title = $_POST['title'];
+    $edition = $_POST['edition'];
+    $publisher = $_POST['publisher'];
+
+    // Prepare SQL insert statement
+    $sql = "INSERT INTO bookdetails (bookno, title, edition, publisher) VALUES ('$bookno', '$title', '$edition', '$publisher')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "<p style='color:green;'>Book added successfully!</p>";
+    } else {
+        echo "<p style='color:red;'>Error: " . $conn->error . "</p>";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Entry</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        form { margin-bottom: 30px; }
+        input[type=text], input[type=number] { padding: 5px; margin: 5px; width: 250px; }
+        input[type=submit] { padding: 8px 15px; }
+        table { border-collapse: collapse; width: 80%; }
+        th, td { border: 1px solid #444; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+<h2>Enter Book Information</h2>
+<form method="POST" action="">
+    <label>Book No:</label><br>
+    <input type="number" name="bookno" required><br>
+
+    <label>Title:</label><br>
+    <input type="text" name="title" required><br>
+
+    <label>Edition:</label><br>
+    <input type="text" name="edition" required><br>
+
+    <label>Publisher:</label><br>
+    <input type="text" name="publisher" required><br><br>
+
+    <input type="submit" value="Add Book">
+</form>
+
+<h2>Book Details</h2>
+<table>
+    <tr>
+        <th>Book No</th>
+        <th>Title</th>
+        <th>Edition</th>
+        <th>Publisher</th>
+    </tr>
+
+    <?php
+    // Fetch and display all books
+    $sql = "SELECT * FROM bookdetails";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "<tr>
+                    <td>{$row['bookno']}</td>
+                    <td>{$row['title']}</td>
+                    <td>{$row['edition']}</td>
+                    <td>{$row['publisher']}</td>
+                  </tr>";
+        }
+    } else {
+        echo "<tr><td colspan='4'>No books found.</td></tr>";
+    }
+
+    $conn->close();
+    ?>
+</table>
+
+</body>
+</html>
+
